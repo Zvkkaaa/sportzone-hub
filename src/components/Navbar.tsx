@@ -9,6 +9,7 @@ const navItems = [
   { path: "/coaches", mn: "Дасгалжуулагчид", en: "Coaches" },
   { path: "/matches", mn: "Тэмцээнүүд", en: "Matches" },
   { path: "/gallery", mn: "Зургийн цомог", en: "Gallery" },
+  { path: "/merch", mn: "Мерчант", en: "Merch" },
 ];
 
 const Navbar = () => {
@@ -17,40 +18,41 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-navy sticky top-0 z-50 shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
-        <Link to="/" className="text-navy-foreground font-extrabold text-xl tracking-tight">
-          ⚽ PIRATES FC
+        <Link to="/" className="text-foreground font-black text-xl tracking-wider flex items-center gap-2">
+          <span className="text-2xl">🏴‍☠️</span>
+          <span>PIRATES</span>
         </Link>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-all duration-200 ${
                 location.pathname === item.path
-                  ? "bg-sport-red text-sport-red-foreground"
-                  : "text-navy-foreground hover:bg-sport-red/20 hover:text-sport-red"
+                  ? "text-sport-orange"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {t(item.mn, item.en)}
             </Link>
           ))}
-          <div className="ml-4 flex items-center bg-navy-foreground/10 rounded-md overflow-hidden">
+          <div className="ml-4 flex items-center rounded-full border border-border overflow-hidden">
             <button
               onClick={() => setLang("mn")}
-              className={`px-3 py-1.5 text-xs font-bold transition-colors ${
-                lang === "mn" ? "bg-sport-red text-sport-red-foreground" : "text-navy-foreground hover:bg-sport-red/30"
+              className={`px-3 py-1 text-xs font-bold transition-all ${
+                lang === "mn" ? "bg-sport-orange text-sport-orange-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               MN
             </button>
             <button
               onClick={() => setLang("en")}
-              className={`px-3 py-1.5 text-xs font-bold transition-colors ${
-                lang === "en" ? "bg-sport-red text-sport-red-foreground" : "text-navy-foreground hover:bg-sport-red/30"
+              className={`px-3 py-1 text-xs font-bold transition-all ${
+                lang === "en" ? "bg-sport-orange text-sport-orange-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               EN
@@ -58,32 +60,30 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile toggle */}
-        <button className="md:hidden text-navy-foreground" onClick={() => setOpen(!open)}>
+        <button className="lg:hidden text-foreground" onClick={() => setOpen(!open)}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-navy border-t border-navy-foreground/10 pb-4">
+        <div className="lg:hidden bg-background/95 backdrop-blur-lg border-t border-border pb-4">
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
               onClick={() => setOpen(false)}
-              className={`block px-6 py-3 text-sm font-medium transition-colors ${
+              className={`block px-6 py-3 text-sm font-semibold uppercase tracking-wider transition-colors ${
                 location.pathname === item.path
-                  ? "bg-sport-red text-sport-red-foreground"
-                  : "text-navy-foreground hover:bg-sport-red/20"
+                  ? "text-sport-orange"
+                  : "text-muted-foreground"
               }`}
             >
               {t(item.mn, item.en)}
             </Link>
           ))}
           <div className="px-6 pt-2 flex gap-2">
-            <button onClick={() => setLang("mn")} className={`px-4 py-1.5 rounded text-xs font-bold ${lang === "mn" ? "bg-sport-red text-sport-red-foreground" : "bg-navy-foreground/10 text-navy-foreground"}`}>MN</button>
-            <button onClick={() => setLang("en")} className={`px-4 py-1.5 rounded text-xs font-bold ${lang === "en" ? "bg-sport-red text-sport-red-foreground" : "bg-navy-foreground/10 text-navy-foreground"}`}>EN</button>
+            <button onClick={() => { setLang("mn"); setOpen(false); }} className={`px-4 py-1.5 rounded-full text-xs font-bold ${lang === "mn" ? "bg-sport-orange text-sport-orange-foreground" : "bg-muted text-muted-foreground"}`}>MN</button>
+            <button onClick={() => { setLang("en"); setOpen(false); }} className={`px-4 py-1.5 rounded-full text-xs font-bold ${lang === "en" ? "bg-sport-orange text-sport-orange-foreground" : "bg-muted text-muted-foreground"}`}>EN</button>
           </div>
         </div>
       )}
