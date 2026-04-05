@@ -25,7 +25,7 @@ const MerchPage = () => {
   return (
     <div className="pt-16">
       {/* Hero */}
-      <section className="bg-card border-b border-border py-16">
+      <section className="gradient-navy py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
             <span className="text-gradient">{t("МЕРЧАНТ", "MERCH")}</span>
