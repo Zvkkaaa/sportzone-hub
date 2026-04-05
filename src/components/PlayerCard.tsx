@@ -8,7 +8,7 @@ interface Props {
 const PlayerCard = ({ player }: Props) => {
   const { t } = useLanguage();
   return (
-    <div className="group relative bg-card rounded-xl overflow-hidden border border-border hover:border-sport-orange/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-sport-orange/10">
+    <div className="group relative bg-card rounded-xl overflow-hidden border border-border hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10">
       <div className="aspect-[3/4] overflow-hidden bg-muted relative">
         <img
           src={getImageUrl(player.image?.url)}
@@ -18,14 +18,14 @@ const PlayerCard = ({ player }: Props) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         {player.number && (
-          <span className="absolute top-3 right-3 bg-sport-orange text-sport-orange-foreground text-lg font-black w-10 h-10 rounded-full flex items-center justify-center">
+          <span className="absolute top-3 right-3 bg-accent text-accent-foreground text-lg font-black w-10 h-10 rounded-full flex items-center justify-center">
             {player.number}
           </span>
         )}
       </div>
       <div className="p-4 relative">
         <h3 className="font-bold text-foreground text-lg">{t(player.name_mn, player.name_en)}</h3>
-        <p className="text-sport-orange text-sm font-medium">{t(player.position_mn, player.position_en)}</p>
+        <p className="text-accent text-sm font-medium">{t(player.position_mn, player.position_en)}</p>
       </div>
     </div>
   );

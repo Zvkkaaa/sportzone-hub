@@ -8,7 +8,7 @@ interface Props {
 const GalleryCard = ({ item }: Props) => {
   const { t } = useLanguage();
   return (
-    <div className="group relative rounded-xl overflow-hidden border border-border hover:border-sport-orange/30 transition-all duration-300">
+    <div className="group relative rounded-xl overflow-hidden border border-border hover:border-accent/30 transition-all duration-300">
       <div className="aspect-video overflow-hidden bg-muted">
         <img
           src={getImageUrl(item.image?.url)}

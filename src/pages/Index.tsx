@@ -54,7 +54,7 @@ const Index = () => {
           <div className="container mx-auto px-4 py-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-sport-red animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                 <span className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
                   {t("ҮР ДҮН", "RESULTS")}
                 </span>
