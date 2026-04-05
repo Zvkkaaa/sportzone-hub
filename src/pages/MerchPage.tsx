@@ -25,7 +25,7 @@ const MerchPage = () => {
   return (
     <div className="pt-16">
       {/* Hero */}
-      <section className="bg-card border-b border-border py-16">
+      <section className="gradient-navy py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
             <span className="text-gradient">{t("МЕРЧАНТ", "MERCH")}</span>
@@ -35,7 +35,7 @@ const MerchPage = () => {
           </p>
           <a
             href="#"
-            className="inline-flex items-center gap-2 bg-sport-orange text-sport-orange-foreground px-8 py-3.5 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-sport-orange/90 transition-all glow-accent"
+            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3.5 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-accent/90 transition-all glow-accent"
           >
             {t("HAPPY PAY дээр худалдаж авах", "Shop on HAPPY PAY")} <ExternalLink size={16} />
           </a>
@@ -53,7 +53,7 @@ const MerchPage = () => {
             {cmsData.map((item: any) => (
               <div
                 key={item.id}
-                className="group bg-card rounded-xl border border-border overflow-hidden hover:border-sport-orange/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-sport-orange/10"
+                className="group bg-card rounded-xl border border-border overflow-hidden hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/10"
               >
                 {item.image?.url && (
                   <div className="aspect-square overflow-hidden bg-muted">
@@ -67,11 +67,11 @@ const MerchPage = () => {
                 )}
                 <div className="p-4 text-center">
                   <h3 className="font-bold text-foreground mb-1">{t(item.name_mn, item.name_en)}</h3>
-                  {item.price && <p className="text-sport-orange font-black text-lg mb-3">{item.price}</p>}
+                  {item.price && <p className="text-accent font-black text-lg mb-3">{item.price}</p>}
                   {item.description_mn || item.description_en ? (
                     <p className="text-muted-foreground text-xs mb-3 line-clamp-2">{t(item.description_mn, item.description_en)}</p>
                   ) : null}
-                  <button className="w-full flex items-center justify-center gap-2 bg-muted text-foreground py-2.5 rounded-lg text-sm font-semibold hover:bg-sport-orange hover:text-sport-orange-foreground transition-all">
+                  <button className="w-full flex items-center justify-center gap-2 bg-muted text-foreground py-2.5 rounded-lg text-sm font-semibold hover:bg-accent hover:text-accent-foreground transition-all">
                     <ShoppingCart size={14} />
                     {t("Худалдаж авах", "Buy Now")}
                   </button>
@@ -85,14 +85,14 @@ const MerchPage = () => {
             {fallbackMerch.map((item) => (
               <div
                 key={item.id}
-                className="group bg-card rounded-xl border border-border p-6 hover:border-sport-orange/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-sport-orange/10 text-center"
+                className="group bg-card rounded-xl border border-border p-6 hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/10 text-center"
               >
                 <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
                   {item.emoji}
                 </div>
                 <h3 className="font-bold text-foreground mb-1">{t(item.name_mn, item.name_en)}</h3>
-                <p className="text-sport-orange font-black text-lg mb-4">{item.price}</p>
-                <button className="w-full flex items-center justify-center gap-2 bg-muted text-foreground py-2.5 rounded-lg text-sm font-semibold hover:bg-sport-orange hover:text-sport-orange-foreground transition-all">
+                <p className="text-accent font-black text-lg mb-4">{item.price}</p>
+                <button className="w-full flex items-center justify-center gap-2 bg-muted text-foreground py-2.5 rounded-lg text-sm font-semibold hover:bg-accent hover:text-accent-foreground transition-all">
                   <ShoppingCart size={14} />
                   {t("Худалдаж авах", "Buy Now")}
                 </button>

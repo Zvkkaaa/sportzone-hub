@@ -25,21 +25,21 @@ const Index = () => {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center px-4 relative z-10">
             <h1 className="text-7xl md:text-[120px] font-black tracking-tighter leading-none mb-2">
-              <span className="text-foreground">PIRATES</span>
+              <span className="text-navy-foreground">PIRATES</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground font-medium tracking-widest uppercase mb-8">
+            <p className="text-xl md:text-2xl text-navy-foreground/70 font-medium tracking-widest uppercase mb-8">
               {t("Сагсан бөмбөгийн баг", "Basketball Team")}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/players"
-                className="inline-flex items-center gap-2 bg-sport-orange text-sport-orange-foreground px-8 py-3.5 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-sport-orange/90 transition-all glow-accent"
+                className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-3.5 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-accent/90 transition-all glow-accent"
               >
                 {t("Тоглогчдыг үзэх", "Meet the Team")} <ArrowRight size={16} />
               </Link>
               <Link
                 to="/merch"
-                className="inline-flex items-center gap-2 border border-foreground/20 text-foreground px-8 py-3.5 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-foreground/10 transition-all"
+                className="inline-flex items-center gap-2 border border-navy-foreground/30 text-navy-foreground px-8 py-3.5 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-navy-foreground/10 transition-all"
               >
                 <ShoppingBag size={16} /> {t("Мерчант", "Shop Merch")}
               </Link>
@@ -54,12 +54,12 @@ const Index = () => {
           <div className="container mx-auto px-4 py-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-sport-red animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                 <span className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
                   {t("ҮР ДҮН", "RESULTS")}
                 </span>
               </div>
-              <Link to="/matches" className="text-sport-orange text-sm font-semibold hover:underline flex items-center gap-1">
+              <Link to="/matches" className="text-accent text-sm font-semibold hover:underline flex items-center gap-1">
                 {t("Бүгдийг үзэх", "View all")} <ArrowRight size={14} />
               </Link>
             </div>
@@ -83,7 +83,7 @@ const Index = () => {
         <section>
           <div className="flex items-center justify-between mb-8">
             <SectionTitle className="mb-0">{t("Тоглогчид", "Players")}</SectionTitle>
-            <Link to="/players" className="text-sport-orange font-semibold text-sm hover:underline flex items-center gap-1 uppercase tracking-wider">
+            <Link to="/players" className="text-accent font-semibold text-sm hover:underline flex items-center gap-1 uppercase tracking-wider">
               {t("Бүгдийг үзэх", "View all")} <ArrowRight size={14} />
             </Link>
           </div>
@@ -104,7 +104,7 @@ const Index = () => {
         <section>
           <div className="flex items-center justify-between mb-8">
             <SectionTitle className="mb-0">{t("Зургийн цомог", "Gallery")}</SectionTitle>
-            <Link to="/gallery" className="text-sport-orange font-semibold text-sm hover:underline flex items-center gap-1 uppercase tracking-wider">
+            <Link to="/gallery" className="text-accent font-semibold text-sm hover:underline flex items-center gap-1 uppercase tracking-wider">
               {t("Бүгдийг үзэх", "View all")} <ArrowRight size={14} />
             </Link>
           </div>

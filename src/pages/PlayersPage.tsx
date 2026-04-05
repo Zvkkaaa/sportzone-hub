@@ -10,9 +10,9 @@ const PlayersPage = () => {
 
   return (
     <div className="pt-16">
-      <section className="bg-card border-b border-border py-16">
+      <section className="gradient-navy py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-foreground">{t("ТОГЛОГЧИД", "PLAYERS")}</h1>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-navy-foreground">{t("ТОГЛОГЧИД", "PLAYERS")}</h1>
         </div>
       </section>
       <div className="container mx-auto px-4 py-12">

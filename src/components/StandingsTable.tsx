@@ -48,19 +48,19 @@ const StandingsTable = () => {
             <tr
               key={team.pos}
               className={`border-t border-border transition-colors hover:bg-muted/50 ${
-                team.pos <= 3 ? "bg-sport-orange/5" : ""
+                team.pos <= 3 ? "bg-accent/5" : ""
               }`}
             >
               <td className="px-4 py-3">
                 {team.pos <= 3 ? (
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-sport-orange text-sport-orange-foreground text-xs font-black">
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-accent text-accent-foreground text-xs font-black">
                     {team.pos}
                   </span>
                 ) : (
                   <span className="text-muted-foreground">{team.pos}</span>
                 )}
               </td>
-              <td className={`px-4 py-3 font-semibold ${team.team === "Pirates" ? "text-sport-orange" : "text-foreground"}`}>
+              <td className={`px-4 py-3 font-semibold ${team.team === "Pirates" ? "text-accent" : "text-foreground"}`}>
                 {team.team}
               </td>
               <td className="px-4 py-3 text-center text-muted-foreground">{team.played}</td>
