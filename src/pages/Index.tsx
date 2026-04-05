@@ -59,7 +59,7 @@ const Index = () => {
                   {t("ҮР ДҮН", "RESULTS")}
                 </span>
               </div>
-              <Link to="/matches" className="text-sport-orange text-sm font-semibold hover:underline flex items-center gap-1">
+              <Link to="/matches" className="text-accent text-sm font-semibold hover:underline flex items-center gap-1">
                 {t("Бүгдийг үзэх", "View all")} <ArrowRight size={14} />
               </Link>
             </div>
@@ -83,7 +83,7 @@ const Index = () => {
         <section>
           <div className="flex items-center justify-between mb-8">
             <SectionTitle className="mb-0">{t("Тоглогчид", "Players")}</SectionTitle>
-            <Link to="/players" className="text-sport-orange font-semibold text-sm hover:underline flex items-center gap-1 uppercase tracking-wider">
+            <Link to="/players" className="text-accent font-semibold text-sm hover:underline flex items-center gap-1 uppercase tracking-wider">
               {t("Бүгдийг үзэх", "View all")} <ArrowRight size={14} />
             </Link>
           </div>
@@ -104,7 +104,7 @@ const Index = () => {
         <section>
           <div className="flex items-center justify-between mb-8">
             <SectionTitle className="mb-0">{t("Зургийн цомог", "Gallery")}</SectionTitle>
-            <Link to="/gallery" className="text-sport-orange font-semibold text-sm hover:underline flex items-center gap-1 uppercase tracking-wider">
+            <Link to="/gallery" className="text-accent font-semibold text-sm hover:underline flex items-center gap-1 uppercase tracking-wider">
               {t("Бүгдийг үзэх", "View all")} <ArrowRight size={14} />
             </Link>
           </div>
