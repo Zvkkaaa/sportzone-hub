@@ -1,13 +1,23 @@
-const API_BASE = "http://35.220.201.97:1337";
+const STRAPI_BASE = "http://35.220.201.97:1337";
+
+// Use proxy in dev, direct URL otherwise
+const getApiBase = () => {
+  if (typeof window !== "undefined" && window.location.protocol === "https:") {
+    // In production/preview on HTTPS, use proxy path
+    return "/strapi";
+  }
+  return STRAPI_BASE;
+};
 
 export const getImageUrl = (url: string | undefined) => {
   if (!url) return "/placeholder.svg";
   if (url.startsWith("http")) return url;
-  return `${API_BASE}${url}`;
+  return `${STRAPI_BASE}${url}`;
 };
 
 async function fetchAPI<T>(endpoint: string): Promise<T[]> {
-  const res = await fetch(`${API_BASE}/api/${endpoint}?populate=*`);
+  const base = getApiBase();
+  const res = await fetch(`${base}/api/${endpoint}?populate=*`);
   if (!res.ok) throw new Error(`Failed to fetch ${endpoint}`);
   const json = await res.json();
   return json.data || [];
