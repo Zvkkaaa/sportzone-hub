@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
+import heroBg from "@/assets/hero-bg.jpg";
 import { usePlayers, useMatches, useGalleries } from "@/hooks/useApi";
 import PlayerCard from "@/components/PlayerCard";
 import MatchCard from "@/components/MatchCard";
