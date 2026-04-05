@@ -19,8 +19,9 @@ const Index = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="gradient-hero text-navy-foreground py-24 md:py-36 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "url('/placeholder.svg')", backgroundSize: "cover" }} />
+      <section className="relative text-navy-foreground py-24 md:py-36 overflow-hidden">
+        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" width={1920} height={800} />
+        <div className="absolute inset-0 gradient-hero opacity-80" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
             PIRATES <span className="text-gradient">FC</span>
