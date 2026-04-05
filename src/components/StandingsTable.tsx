@@ -1,6 +1,7 @@
 import { useLanguage } from "@/context/LanguageContext";
+import { useStandings } from "@/hooks/useApi";
 
-const standings = [
+const fallbackStandings = [
   { pos: 1, team: "Pirates", played: 20, wins: 16, draws: 2, losses: 2, points: 50 },
   { pos: 2, team: "Thunder United", played: 20, wins: 14, draws: 4, losses: 2, points: 46 },
   { pos: 3, team: "Storm City", played: 20, wins: 13, draws: 3, losses: 4, points: 42 },
@@ -13,6 +14,20 @@ const standings = [
 
 const StandingsTable = () => {
   const { t } = useLanguage();
+  const { data: cmsData } = useStandings();
+
+  // Map CMS data if available, otherwise use fallback
+  const standings = cmsData && cmsData.length > 0
+    ? cmsData.map((item: any, i: number) => ({
+        pos: item.position || i + 1,
+        team: item.team_name || item.team || "",
+        played: item.played || 0,
+        wins: item.wins || 0,
+        draws: item.draws || 0,
+        losses: item.losses || 0,
+        points: item.points || 0,
+      }))
+    : fallbackStandings;
 
   return (
     <div className="overflow-x-auto rounded-xl border border-border">
@@ -29,7 +44,7 @@ const StandingsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {standings.map((team) => (
+          {standings.map((team: any) => (
             <tr
               key={team.pos}
               className={`border-t border-border transition-colors hover:bg-muted/50 ${
