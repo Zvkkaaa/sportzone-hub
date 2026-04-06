@@ -26,7 +26,7 @@ module.exports = {
       repo: "git@github.com:Zvkkaaa/sportzone-hub.git",
       path: "/opt/sportzone-hub",
       "post-deploy":
-        "npm install && rm -rf dist && npm run build && pm2 reload ecosystem.config.js",
+        "npm install && rm -rf dist && npm run build && pm2 reload ecosystem.config.cjs",
     },
   },
 };
