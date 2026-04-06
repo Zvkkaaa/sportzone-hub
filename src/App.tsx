@@ -10,8 +10,9 @@ import Index from "./pages/Index";
 import PlayersPage from "./pages/PlayersPage";
 import CoachesPage from "./pages/CoachesPage";
 import MatchesPage from "./pages/MatchesPage";
-import GalleryPage from "./pages/GalleryPage";
+import NewsPage from "./pages/NewsPage";
 import MerchPage from "./pages/MerchPage";
+import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,7 +24,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col bg-background">
             <Navbar />
             <main className="flex-1">
               <Routes>
@@ -31,8 +32,10 @@ const App = () => (
                 <Route path="/players" element={<PlayersPage />} />
                 <Route path="/coaches" element={<CoachesPage />} />
                 <Route path="/matches" element={<MatchesPage />} />
-                <Route path="/gallery" element={<GalleryPage />} />
+                <Route path="/news" element={<NewsPage />} />
+                <Route path="/gallery" element={<NewsPage />} />
                 <Route path="/merch" element={<MerchPage />} />
+                <Route path="/contact" element={<ContactPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
