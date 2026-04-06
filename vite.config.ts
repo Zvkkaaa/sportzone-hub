@@ -10,13 +10,11 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
-    proxy: {
-      "/strapi": {
-        target: "/http://34.92.72.76/:1337",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/strapi/, ""),
-      },
-    },
+  },
+  preview: {
+    host: true,
+    port: 4173,
+    allowedHosts: ['colorquest.space']
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

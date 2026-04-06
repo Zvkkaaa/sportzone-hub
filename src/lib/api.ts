@@ -1,24 +1,14 @@
-const STRAPI_BASE = "http://34.92.72.76:1337";
-
-// Use proxy in preview (HTTPS), direct in local dev (HTTP)
-const getApiBase = () => {
-  if (typeof window !== "undefined" && window.location.protocol === "https:") {
-    return "/strapi";
-  }
-  return STRAPI_BASE;
-};
+const STRAPI_BASE = "https://colorquest.space";
 
 export const getImageUrl = (url: string | undefined) => {
   if (!url) return "/placeholder.svg";
   if (url.startsWith("http")) return url;
   // Use proxy for images too
-  const base = getApiBase();
-  return `${base}${url}`;
+  return `${STRAPI_BASE}${url}`;
 };
 
 async function fetchAPI<T>(endpoint: string): Promise<T[]> {
-  const base = getApiBase();
-  const res = await fetch(`${base}/api/${endpoint}?populate=*`);
+  const res = await fetch(`${STRAPI_BASE}/api/${endpoint}?populate=*`);
   if (!res.ok) {
     if (res.status === 404) return [];
     throw new Error(`Failed to fetch ${endpoint}`);
