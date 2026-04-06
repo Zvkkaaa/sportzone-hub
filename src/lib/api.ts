@@ -1,4 +1,4 @@
-const STRAPI_BASE = "http://35.220.201.97:1337";
+const STRAPI_BASE = "http://34.92.72.76:1337";
 
 // Use proxy in preview (HTTPS), direct in local dev (HTTP)
 const getApiBase = () => {
