@@ -15,6 +15,7 @@ module.exports = {
     dev: {
       user: "strapi",
       host: "35.220.201.97",
+      key: "~/.ssh/id_ed25519",
       ref: "origin/main",
       repo: "git@github.com:Zvkkaaa/sportzone-hub.git",
       path: "/opt/sportzone-hub",
