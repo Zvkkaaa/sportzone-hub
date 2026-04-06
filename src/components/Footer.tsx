@@ -1,33 +1,18 @@
 import { useLanguage } from "@/context/LanguageContext";
 import { Facebook, Instagram, Youtube } from "lucide-react";
+import piratesLogo from "@/assets/pirates-logo.png";
 
 const Footer = () => {
   const { t } = useLanguage();
   return (
-    <footer className="bg-navy text-navy-foreground py-10">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-center md:text-left">
-            <p className="font-black text-xl text-navy-foreground tracking-wider">🏴‍☠️ PIRATES</p>
-            <p className="text-navy-foreground/60 text-sm mt-1">
-              {t("Монголын сагсан бөмбөгийн баг", "Mongolian Basketball Team")}
-            </p>
-          </div>
-          <div className="flex items-center gap-4">
-            <a href="#" className="w-10 h-10 rounded-full bg-navy-foreground/10 flex items-center justify-center text-navy-foreground/60 hover:bg-accent hover:text-accent-foreground transition-all">
-              <Facebook size={18} />
-            </a>
-            <a href="#" className="w-10 h-10 rounded-full bg-navy-foreground/10 flex items-center justify-center text-navy-foreground/60 hover:bg-accent hover:text-accent-foreground transition-all">
-              <Instagram size={18} />
-            </a>
-            <a href="#" className="w-10 h-10 rounded-full bg-navy-foreground/10 flex items-center justify-center text-navy-foreground/60 hover:bg-accent hover:text-accent-foreground transition-all">
-              <Youtube size={18} />
-            </a>
-          </div>
-          <p className="text-navy-foreground/60 text-sm">
-            © 2026 Pirates. {t("Бүх эрх хуулиар хамгаалагдсан.", "All rights reserved.")}
-          </p>
+    <footer className="border-t border-border py-6">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <a href="#" className="text-foreground/40 hover:text-accent transition-colors"><Facebook size={20} /></a>
+          <a href="#" className="text-foreground/40 hover:text-accent transition-colors"><Instagram size={20} /></a>
+          <a href="#" className="text-foreground/40 hover:text-accent transition-colors"><Youtube size={20} /></a>
         </div>
+        <p className="text-foreground/30 text-sm">© 2026 Pirates</p>
       </div>
     </footer>
   );

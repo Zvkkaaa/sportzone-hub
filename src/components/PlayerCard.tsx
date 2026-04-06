@@ -8,12 +8,12 @@ interface Props {
 const PlayerCard = ({ player }: Props) => {
   const { t } = useLanguage();
   return (
-    <div className="group relative bg-card rounded-xl overflow-hidden border border-border hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10">
+    <div className="group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
       <div className="aspect-[3/4] overflow-hidden bg-muted relative">
         <img
           src={getImageUrl(player.image?.url)}
           alt={t(player.name_mn, player.name_en)}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
@@ -23,7 +23,7 @@ const PlayerCard = ({ player }: Props) => {
           </span>
         )}
       </div>
-      <div className="p-4 relative">
+      <div className="p-4">
         <h3 className="font-bold text-foreground text-lg">{t(player.name_mn, player.name_en)}</h3>
         <p className="text-accent text-sm font-medium">{t(player.position_mn, player.position_en)}</p>
       </div>
