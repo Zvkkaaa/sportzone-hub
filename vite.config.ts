@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
     },
     proxy: {
       "/strapi": {
-        target: "http://35.220.201.97:1337",
+        target: "/http://34.92.72.76/:1337",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/strapi/, ""),
       },
