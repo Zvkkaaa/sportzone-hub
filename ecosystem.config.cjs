@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "sportzone",
       script: "npm",
-      args: "run dev",
+      args: "run preview",
       instances: 1,
       autorestart: true,
       watch: false,
