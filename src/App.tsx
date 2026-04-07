@@ -11,6 +11,7 @@ import PlayersPage from "./pages/PlayersPage";
 import CoachesPage from "./pages/CoachesPage";
 import MatchesPage from "./pages/MatchesPage";
 import NewsPage from "./pages/NewsPage";
+import GalleryPage from "./pages/GalleryPage";
 import MerchPage from "./pages/MerchPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
@@ -33,7 +34,7 @@ const App = () => (
                 <Route path="/coaches" element={<CoachesPage />} />
                 <Route path="/matches" element={<MatchesPage />} />
                 <Route path="/news" element={<NewsPage />} />
-                <Route path="/gallery" element={<NewsPage />} />
+                <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/merch" element={<MerchPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="*" element={<NotFound />} />

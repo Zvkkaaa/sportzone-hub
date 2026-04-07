@@ -23,3 +23,4 @@ export const fetchMatches = () => fetchAPI<any>("matches");
 export const fetchGalleries = () => fetchAPI<any>("galleries");
 export const fetchMerchandises = () => fetchAPI<any>("merchandises");
 export const fetchStandings = () => fetchAPI<any>("standings");
+export const fetchNews = () => fetchAPI<any>("newss");
