@@ -4,7 +4,15 @@ import { Menu, X, Globe } from "lucide-react";
 import { useState, useEffect } from "react";
 import piratesLogo from "@/assets/pirates-logo.png";
 
-const navItems = [
+const primaryNav = [
+  { path: "/players", mn: "Тоглогчид", en: "Players" },
+  { path: "/matches", mn: "Тэмцээн", en: "Matches" },
+  { path: "/news", mn: "Мэдээ", en: "News" },
+  { path: "/merch", mn: "Мерчант", en: "Merch" },
+  { path: "/contact", mn: "Холбоо", en: "Contact" },
+];
+
+const mobileNav = [
   { path: "/", mn: "Нүүр", en: "Home" },
   { path: "/players", mn: "Тоглогчид", en: "Players" },
   { path: "/coaches", mn: "Дасгалжуулагчид", en: "Coaches" },
@@ -45,7 +53,7 @@ const Navbar = () => {
 
         {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-0.5">
-          {navItems.map((item) => (
+          {primaryNav.map((item) => (
             <Link
               key={item.path}
               to={item.path}
@@ -83,7 +91,7 @@ const Navbar = () => {
         open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
       }`}>
         <div className="bg-background/98 backdrop-blur-xl border-t border-border pb-6 px-2">
-          {navItems.map((item, i) => (
+          {mobileNav.map((item, i) => (
             <Link
               key={item.path}
               to={item.path}
