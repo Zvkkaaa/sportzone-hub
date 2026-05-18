@@ -8,6 +8,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Index from "./pages/Index";
 import PlayersPage from "./pages/PlayersPage";
+import TeamsPage from "./pages/TeamsPage";
+import TeamDetailPage from "./pages/TeamDetailPage";
 import CoachesPage from "./pages/CoachesPage";
 import MatchesPage from "./pages/MatchesPage";
 import NewsPage from "./pages/NewsPage";
