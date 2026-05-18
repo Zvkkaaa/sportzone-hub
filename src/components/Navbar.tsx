@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import piratesLogo from "@/assets/pirates-logo.png";
 
 const primaryNav = [
-  { path: "/players", mn: "Тоглогчид", en: "Players" },
+  { path: "/teams", mn: "Багууд", en: "Teams" },
   { path: "/matches", mn: "Тэмцээн", en: "Matches" },
   { path: "/news", mn: "Мэдээ", en: "News" },
   { path: "/merch", mn: "Мерчант", en: "Merch" },
