@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import piratesLogo from "@/assets/pirates-logo.png";
 
 const primaryNav = [
-  { path: "/players", mn: "Тоглогчид", en: "Players" },
+  { path: "/teams", mn: "Багууд", en: "Teams" },
   { path: "/matches", mn: "Тэмцээн", en: "Matches" },
   { path: "/news", mn: "Мэдээ", en: "News" },
   { path: "/merch", mn: "Мерчант", en: "Merch" },
@@ -14,8 +14,7 @@ const primaryNav = [
 
 const mobileNav = [
   { path: "/", mn: "Нүүр", en: "Home" },
-  { path: "/players", mn: "Тоглогчид", en: "Players" },
-  { path: "/coaches", mn: "Дасгалжуулагчид", en: "Coaches" },
+  { path: "/teams", mn: "Багууд", en: "Teams" },
   { path: "/matches", mn: "Тэмцээнүүд", en: "Matches" },
   { path: "/news", mn: "Мэдээ", en: "News" },
   { path: "/gallery", mn: "Зураг", en: "Gallery" },
