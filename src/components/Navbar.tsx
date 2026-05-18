@@ -4,7 +4,15 @@ import { Menu, X, Globe } from "lucide-react";
 import { useState, useEffect } from "react";
 import piratesLogo from "@/assets/pirates-logo.png";
 
-const navItems = [
+const primaryNav = [
+  { path: "/players", mn: "Тоглогчид", en: "Players" },
+  { path: "/matches", mn: "Тэмцээн", en: "Matches" },
+  { path: "/news", mn: "Мэдээ", en: "News" },
+  { path: "/merch", mn: "Мерчант", en: "Merch" },
+  { path: "/contact", mn: "Холбоо", en: "Contact" },
+];
+
+const mobileNav = [
   { path: "/", mn: "Нүүр", en: "Home" },
   { path: "/players", mn: "Тоглогчид", en: "Players" },
   { path: "/coaches", mn: "Дасгалжуулагчид", en: "Coaches" },
