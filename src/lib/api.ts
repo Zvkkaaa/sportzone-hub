@@ -3,7 +3,6 @@ const STRAPI_BASE = "https://colorquest.space";
 export const getImageUrl = (url: string | undefined) => {
   if (!url) return "/placeholder.svg";
   if (url.startsWith("http")) return url;
-  // Use proxy for images too
   return `${STRAPI_BASE}${url}`;
 };
 
@@ -24,3 +23,4 @@ export const fetchGalleries = () => fetchAPI<any>("galleries");
 export const fetchMerchandises = () => fetchAPI<any>("merchandises");
 export const fetchStandings = () => fetchAPI<any>("standings");
 export const fetchNews = () => fetchAPI<any>("newss");
+export const fetchTeams = () => fetchAPI<any>("teams");
