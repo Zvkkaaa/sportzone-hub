@@ -53,7 +53,7 @@ const Navbar = () => {
 
         {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-0.5">
-          {navItems.map((item) => (
+          {primaryNav.map((item) => (
             <Link
               key={item.path}
               to={item.path}
@@ -91,7 +91,7 @@ const Navbar = () => {
         open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
       }`}>
         <div className="bg-background/98 backdrop-blur-xl border-t border-border pb-6 px-2">
-          {navItems.map((item, i) => (
+          {mobileNav.map((item, i) => (
             <Link
               key={item.path}
               to={item.path}
