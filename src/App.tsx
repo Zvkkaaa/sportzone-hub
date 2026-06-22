@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Index from "./pages/Index";
 import TeamsPage from "./pages/TeamsPage";
+import PlayersPage from "./pages/PlayersPage";
 import TeamDetailPage from "./pages/TeamDetailPage";
 import PlayerProfilePage from "./pages/PlayerProfilePage";
 import MatchesPage from "./pages/MatchesPage";
@@ -33,6 +34,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/teams" element={<TeamsPage />} />
+                <Route path="/players" element={<PlayersPage />} />
                 <Route path="/teams/:teamId" element={<TeamDetailPage />} />
                 <Route path="/players/:slug" element={<PlayerProfilePage />} />
                 <Route path="/matches" element={<MatchesPage />} />

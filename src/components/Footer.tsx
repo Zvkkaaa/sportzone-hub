@@ -6,7 +6,7 @@ import piratesLogo from "@/assets/pirates-logo.png";
 const Footer = () => {
   const { t } = useLanguage();
   return (
-    <footer className="border-t border-border bg-card/30 mt-auto">
+    <footer className="border-t border-border bg-white/70 backdrop-blur-sm mt-auto">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div className="flex flex-col items-center md:items-start">
@@ -41,7 +41,7 @@ const Footer = () => {
             <h4 className="text-foreground/50 text-xs font-bold uppercase tracking-widest mb-4">{t("Сошиал", "Social")}</h4>
             <div className="flex items-center gap-3">
               {[Facebook, Instagram, Youtube].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-lg bg-foreground/5 flex items-center justify-center text-foreground/50 hover:text-accent hover:bg-accent/10 transition-all">
+                <a key={i} href="#" className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-foreground/50 hover:text-accent hover:bg-accent/10 transition-all">
                   <Icon size={18} />
                 </a>
               ))}

@@ -7,7 +7,7 @@ import TeamCard from "@/components/TeamCard";
 import PlayerCard from "@/components/PlayerCard";
 import MatchRow from "@/components/MatchRow";
 import SponsorMarquee from "@/components/SponsorMarquee";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero-bg-light.jpg";
 import piratesLogo from "@/assets/pirates-logo.png";
 import { ArrowRight, ShoppingBag, Send, ArrowUpRight, Calendar } from "lucide-react";
 
@@ -31,38 +31,62 @@ const Index = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="relative h-screen min-h-[700px] overflow-hidden flex items-center justify-center">
-        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      <section className="relative min-h-[760px] overflow-hidden flex items-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-slate-100" />
+        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-35 mix-blend-multiply brightness-110 saturate-75" />
         <div className="absolute inset-0 gradient-hero" />
-        <div className="relative z-10 text-center px-4 animate-slide-up">
-          <img src={piratesLogo} alt="Pirates" className="w-28 h-28 md:w-40 md:h-40 mx-auto mb-6 object-contain drop-shadow-2xl animate-float" />
-          <p className="text-accent text-xs md:text-sm font-bold uppercase tracking-[0.4em] mb-4">
-            {t("Сагсан бөмбөгийн клуб", "Basketball Club")}
-          </p>
-          <h1 className="font-display text-6xl md:text-[140px] font-bold uppercase tracking-tighter leading-none mb-6 text-foreground">
-            Pirates
-          </h1>
-          <p className="text-foreground/50 max-w-xl mx-auto mb-10 text-sm md:text-base">
-            {t(
-              "Эрэгтэй, эмэгтэй, U21, U19, U17, U15 болон академи — нэгдмэл нэрийн дор бэлтгэгдсэн.",
-              "Men's, Women's, U21, U19, U17, U15 and Academy — competing as one club."
-            )}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link to="/teams" className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-7 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/30 transition-all">
-              {t("Багуудыг үзэх", "View Teams")} <ArrowRight size={14} />
-            </Link>
-            <Link to="/news" className="inline-flex items-center gap-2 border border-foreground/20 text-foreground px-7 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-foreground/5 transition-all">
-              {t("Сүүлийн мэдээ", "Latest News")}
-            </Link>
-            <Link to="/merch" className="inline-flex items-center gap-2 border border-foreground/20 text-foreground px-7 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-foreground/5 transition-all">
-              <ShoppingBag size={14} /> {t("Мерчант", "Shop")}
-            </Link>
-          </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-foreground/20 flex items-start justify-center p-1.5">
-            <div className="w-1.5 h-2.5 rounded-full bg-accent animate-pulse" />
+        <div className="absolute -top-24 -right-20 w-96 h-96 rounded-full bg-accent/8 blur-3xl" />
+        <div className="absolute -bottom-24 -left-20 w-96 h-96 rounded-full bg-slate-300/20 blur-3xl" />
+        <div className="relative z-10 container mx-auto px-4 py-24">
+          <div className="max-w-5xl mx-auto grid gap-10 lg:grid-cols-[1.25fr_0.75fr] items-center">
+            <div className="text-center lg:text-left animate-slide-up">
+              <div className="inline-flex items-center gap-3 rounded-full border border-border bg-white/80 backdrop-blur px-4 py-2 mb-4 shadow-sm">
+                <img src={piratesLogo} alt="Pirates" className="w-8 h-8 object-contain" />
+                <p className="text-accent text-[10px] md:text-xs font-bold uppercase tracking-[0.35em]">
+                  {t("Сагсан бөмбөгийн клуб", "Basketball Club")}
+                </p>
+              </div>
+              <h1 className="font-display text-5xl md:text-[120px] font-bold uppercase tracking-tighter leading-none mb-6 text-foreground">
+                Pirates
+              </h1>
+              <p className="text-foreground/60 max-w-xl mx-auto lg:mx-0 mb-10 text-sm md:text-base">
+                {t(
+                  "Эрэгтэй, эмэгтэй, U21, U19, U17, U15 болон академи — нэгдмэл нэрийн дор бэлтгэгдсэн.",
+                  "Men's, Women's, U21, U19, U17, U15 and Academy — competing as one club."
+                )}
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+                <Link to="/teams" className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-7 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                  {t("Багуудыг үзэх", "View Teams")} <ArrowRight size={14} />
+                </Link>
+                <Link to="/news" className="inline-flex items-center gap-2 border border-border bg-white/80 text-foreground px-7 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white transition-all shadow-sm">
+                  {t("Сүүлийн мэдээ", "Latest News")}
+                </Link>
+                <Link to="/merch" className="inline-flex items-center gap-2 border border-border bg-white/80 text-foreground px-7 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white transition-all shadow-sm">
+                  <ShoppingBag size={14} /> {t("Мерчант", "Shop")}
+                </Link>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="rounded-[2rem] border border-border bg-white/75 backdrop-blur p-5 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+                <div className="rounded-[1.5rem] overflow-hidden bg-slate-100 aspect-[4/5] relative">
+                  <img src={heroBg} alt="" className="w-full h-full object-cover opacity-80 mix-blend-multiply brightness-105 saturate-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/15 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-foreground/45 mb-2">
+                      {t("Клубын уур амьсгал", "Club atmosphere")}
+                    </p>
+                    <p className="text-sm text-foreground/70 max-w-xs">
+                      {t(
+                        "Тод, цэвэр, хөдөлгөөнтэй дүрслэлтэй шинэ эхлэл.",
+                        "A brighter, cleaner, more minimal first impression."
+                      )}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -167,7 +191,7 @@ const Index = () => {
                     className="group bg-card rounded-2xl border border-border overflow-hidden hover:border-accent/40 transition-all duration-500 hover:-translate-y-2"
                   >
                     <div className="aspect-video bg-muted overflow-hidden relative">
-                      <img src={cover ? getImageUrl(cover) : heroBg} alt="" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+                      <img src={cover ? getImageUrl(cover) : heroBg} alt="" className="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
                     </div>
                     <div className="p-5">
                       {date && (
@@ -192,8 +216,8 @@ const Index = () => {
 
       {/* Contact CTA */}
       <section className="relative py-24 overflow-hidden">
-        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15" />
-        <div className="absolute inset-0 bg-background/80" />
+        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-background/88" />
         <div className="relative z-10 text-center px-4">
           <p className="text-accent text-xs font-bold uppercase tracking-[0.3em] mb-4">{t("Хамтрагч", "Partner")}</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight text-foreground mb-3">

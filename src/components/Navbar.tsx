@@ -6,6 +6,7 @@ import piratesLogo from "@/assets/pirates-logo.png";
 
 const nav = [
   { path: "/teams", mn: "Багууд", en: "Teams" },
+  { path: "/players", mn: "Тоглогчид", en: "Players" },
   { path: "/matches", mn: "Тэмцээн", en: "Matches" },
   { path: "/news", mn: "Мэдээ", en: "News" },
   { path: "/gallery", mn: "Зураг", en: "Gallery" },
@@ -29,7 +30,7 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled ? "bg-background/95 backdrop-blur-xl border-b border-border" : "bg-transparent"
+      scrolled ? "bg-background/85 backdrop-blur-xl border-b border-border/70 shadow-sm" : "bg-transparent"
     }`}>
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-3 group">
@@ -44,8 +45,8 @@ const Navbar = () => {
               to={item.path}
               className={`relative px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
                 location.pathname === item.path || location.pathname.startsWith(item.path + "/")
-                  ? "text-accent"
-                  : "text-foreground/60 hover:text-foreground"
+                  ? "text-accent bg-accent/8"
+                  : "text-foreground/60 hover:text-foreground hover:bg-foreground/5"
               }`}
             >
               {t(item.mn, item.en)}
@@ -71,7 +72,7 @@ const Navbar = () => {
       </div>
 
       <div className={`lg:hidden overflow-hidden transition-all duration-300 ${open ? "max-h-[500px]" : "max-h-0"}`}>
-        <div className="bg-background/98 backdrop-blur-xl border-t border-border pb-6 px-2">
+        <div className="bg-background/95 backdrop-blur-xl border-t border-border/70 pb-6 px-2 shadow-lg shadow-slate-900/5">
           <Link to="/" className="block px-4 py-3 mx-2 rounded-lg text-sm font-bold uppercase tracking-wider text-foreground/60 hover:text-foreground">
             {t("Нүүр", "Home")}
           </Link>
@@ -80,7 +81,7 @@ const Navbar = () => {
               key={item.path}
               to={item.path}
               className={`block px-4 py-3 mx-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${
-                location.pathname === item.path ? "text-accent bg-accent/5" : "text-foreground/60 hover:text-foreground"
+                location.pathname === item.path ? "text-accent bg-accent/8" : "text-foreground/60 hover:text-foreground hover:bg-foreground/5"
               }`}
             >
               {t(item.mn, item.en)}
