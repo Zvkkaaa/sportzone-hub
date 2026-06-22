@@ -7,12 +7,12 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Index from "./pages/Index";
-import PlayersPage from "./pages/PlayersPage";
 import TeamsPage from "./pages/TeamsPage";
 import TeamDetailPage from "./pages/TeamDetailPage";
-import CoachesPage from "./pages/CoachesPage";
+import PlayerProfilePage from "./pages/PlayerProfilePage";
 import MatchesPage from "./pages/MatchesPage";
 import NewsPage from "./pages/NewsPage";
+import NewsArticlePage from "./pages/NewsArticlePage";
 import GalleryPage from "./pages/GalleryPage";
 import MerchPage from "./pages/MerchPage";
 import ContactPage from "./pages/ContactPage";
@@ -32,12 +32,12 @@ const App = () => (
             <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/players" element={<PlayersPage />} />
                 <Route path="/teams" element={<TeamsPage />} />
                 <Route path="/teams/:teamId" element={<TeamDetailPage />} />
-                <Route path="/coaches" element={<CoachesPage />} />
+                <Route path="/players/:slug" element={<PlayerProfilePage />} />
                 <Route path="/matches" element={<MatchesPage />} />
                 <Route path="/news" element={<NewsPage />} />
+                <Route path="/news/:slug" element={<NewsArticlePage />} />
                 <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/merch" element={<MerchPage />} />
                 <Route path="/contact" element={<ContactPage />} />

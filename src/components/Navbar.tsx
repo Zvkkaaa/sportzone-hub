@@ -4,22 +4,13 @@ import { Menu, X, Globe } from "lucide-react";
 import { useState, useEffect } from "react";
 import piratesLogo from "@/assets/pirates-logo.png";
 
-const primaryNav = [
+const nav = [
   { path: "/teams", mn: "Багууд", en: "Teams" },
   { path: "/matches", mn: "Тэмцээн", en: "Matches" },
   { path: "/news", mn: "Мэдээ", en: "News" },
-  { path: "/merch", mn: "Мерчант", en: "Merch" },
-  { path: "/contact", mn: "Холбоо", en: "Contact" },
-];
-
-const mobileNav = [
-  { path: "/", mn: "Нүүр", en: "Home" },
-  { path: "/teams", mn: "Багууд", en: "Teams" },
-  { path: "/matches", mn: "Тэмцээнүүд", en: "Matches" },
-  { path: "/news", mn: "Мэдээ", en: "News" },
   { path: "/gallery", mn: "Зураг", en: "Gallery" },
   { path: "/merch", mn: "Мерчант", en: "Merch" },
-  { path: "/contact", mn: "Холбоо барих", en: "Contact" },
+  { path: "/contact", mn: "Холбоо", en: "Contact" },
 ];
 
 const Navbar = () => {
@@ -34,36 +25,31 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [location.pathname]);
-
-  const toggleLang = () => setLang(lang === "mn" ? "en" : "mn");
+  useEffect(() => { setOpen(false); }, [location.pathname]);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled ? "bg-background/95 backdrop-blur-xl border-b border-border shadow-lg shadow-background/50" : "bg-transparent"
+      scrolled ? "bg-background/95 backdrop-blur-xl border-b border-border" : "bg-transparent"
     }`}>
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-3 group">
           <img src={piratesLogo} alt="Pirates" className="h-10 w-10 object-contain group-hover:scale-110 transition-transform duration-300" />
-          <span className="text-foreground font-black text-lg tracking-tight hidden sm:block">PIRATES</span>
+          <span className="font-display text-foreground font-bold text-xl tracking-tight uppercase hidden sm:block">Pirates</span>
         </Link>
 
-        {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-0.5">
-          {primaryNav.map((item) => (
+          {nav.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`relative px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest transition-all duration-300 ${
-                location.pathname === item.path
+              className={`relative px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
+                location.pathname === item.path || location.pathname.startsWith(item.path + "/")
                   ? "text-accent"
-                  : "text-foreground/50 hover:text-foreground hover:bg-foreground/5"
+                  : "text-foreground/60 hover:text-foreground"
               }`}
             >
               {t(item.mn, item.en)}
-              {location.pathname === item.path && (
+              {(location.pathname === item.path || location.pathname.startsWith(item.path + "/")) && (
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-accent rounded-full" />
               )}
             </Link>
@@ -72,9 +58,8 @@ const Navbar = () => {
 
         <div className="flex items-center gap-3">
           <button
-            onClick={toggleLang}
-            className="flex items-center gap-1.5 text-foreground/50 hover:text-accent px-2 py-1.5 rounded-lg hover:bg-foreground/5 transition-all duration-300"
-            title={lang === "mn" ? "Switch to English" : "Монгол руу солих"}
+            onClick={() => setLang(lang === "mn" ? "en" : "mn")}
+            className="flex items-center gap-1.5 text-foreground/60 hover:text-accent px-2 py-1.5 rounded-lg hover:bg-foreground/5 transition-all"
           >
             <Globe size={16} />
             <span className="text-xs font-bold uppercase">{lang === "mn" ? "EN" : "MN"}</span>
@@ -85,21 +70,18 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${
-        open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-      }`}>
+      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${open ? "max-h-[500px]" : "max-h-0"}`}>
         <div className="bg-background/98 backdrop-blur-xl border-t border-border pb-6 px-2">
-          {mobileNav.map((item, i) => (
+          <Link to="/" className="block px-4 py-3 mx-2 rounded-lg text-sm font-bold uppercase tracking-wider text-foreground/60 hover:text-foreground">
+            {t("Нүүр", "Home")}
+          </Link>
+          {nav.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`block px-4 py-3 mx-2 rounded-lg text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${
-                location.pathname === item.path
-                  ? "text-accent bg-accent/5"
-                  : "text-foreground/50 hover:text-foreground hover:bg-foreground/5"
+              className={`block px-4 py-3 mx-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${
+                location.pathname === item.path ? "text-accent bg-accent/5" : "text-foreground/60 hover:text-foreground"
               }`}
-              style={{ animationDelay: `${i * 50}ms` }}
             >
               {t(item.mn, item.en)}
             </Link>
