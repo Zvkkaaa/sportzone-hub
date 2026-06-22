@@ -1,82 +1,69 @@
-import { Link } from "react-router-dom";
+import { useMemo } from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { useTeams, usePlayers } from "@/hooks/useApi";
-import { getImageUrl } from "@/lib/api";
+import { useTeams, usePlayers, useCoaches } from "@/hooks/useApi";
+import { teamName, playerTeamName, coachTeamName } from "@/lib/teamHelpers";
+import TeamCard from "@/components/TeamCard";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import piratesLogo from "@/assets/pirates-logo.png";
-
-const getTeamKey = (p: any): string =>
-  p?.team?.name || p?.team?.team_name || p?.team_name || p?.team_category || p?.category || "";
 
 const TeamsPage = () => {
   const { t } = useLanguage();
   const { data: teamsData, isLoading } = useTeams();
   const { data: playersData } = usePlayers();
+  const { data: coachesData } = useCoaches();
 
   const players = playersData || [];
-  let teams: any[] = teamsData || [];
+  const coaches = coachesData || [];
 
-  // Fallback: derive teams from players if CMS has none
-  if (teams.length === 0 && players.length > 0) {
+  // Build list of teams. If CMS empty, derive from players.
+  const teams = useMemo(() => {
+    if (teamsData && teamsData.length > 0) return teamsData;
     const map = new Map<string, any>();
     players.forEach((p: any) => {
-      const k = getTeamKey(p);
-      if (k && !map.has(k)) map.set(k, { id: k, name: k, image: p.image });
+      const k = playerTeamName(p);
+      if (k && !map.has(k)) map.set(k, { id: k, name: k });
     });
-    teams = Array.from(map.values());
-  }
+    return Array.from(map.values());
+  }, [teamsData, players]);
+
+  const enriched = useMemo(() => {
+    return teams.map((tm: any) => {
+      const n = teamName(tm);
+      const playerCount = players.filter((p: any) => playerTeamName(p) === n).length;
+      const headCoach = coaches.find((c: any) => coachTeamName(c) === n);
+      const coachName = headCoach ? (headCoach.name_mn || headCoach.name_en || headCoach.name || "") : "";
+      return { team: tm, playerCount, coachName };
+    });
+  }, [teams, players, coaches]);
 
   if (isLoading) return <div className="pt-20"><LoadingSpinner /></div>;
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
+        <div className="mb-12 animate-fade-in">
           <p className="text-accent text-xs font-bold uppercase tracking-[0.3em] mb-3">
             {t("Манай", "Our")}
           </p>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground">
+          <h1 className="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight text-foreground">
             {t("Багууд", "Teams")}
           </h1>
+          <p className="text-foreground/50 max-w-xl mt-4">
+            {t(
+              "Эрэгтэй, эмэгтэй, U21, U19, U17, U15 болон академийн бүх багууд — нэг дороос.",
+              "Men's, Women's, U21, U19, U17, U15 and Academy squads — all in one place."
+            )}
+          </p>
         </div>
 
-        {teams.length === 0 ? (
+        {enriched.length === 0 ? (
           <p className="text-center text-foreground/40 py-20">
             {t("Багийн мэдээлэл олдсонгүй", "No teams found")}
           </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {teams.map((team: any, i: number) => {
-              const name = team.name || team.team_name || team.title || `Team ${i + 1}`;
-              const id = team.id || team.documentId || name;
-              const img = team.image?.url || team.logo?.url;
-              return (
-                <Link
-                  key={id}
-                  to={`/teams/${encodeURIComponent(id)}`}
-                  state={{ teamName: name }}
-                  className="group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-500 hover:-translate-y-1 animate-slide-up"
-                  style={{ animationDelay: `${i * 80}ms` }}
-                >
-                  <div className="aspect-[4/3] overflow-hidden bg-muted relative">
-                    <img
-                      src={img ? getImageUrl(img) : piratesLogo}
-                      alt={name}
-                      className={`w-full h-full ${img ? "object-cover" : "object-contain p-12 opacity-70"} group-hover:scale-105 transition-transform duration-700`}
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-                  </div>
-                  <div className="p-5 flex items-center justify-between">
-                    <div>
-                      <p className="text-foreground/40 text-[10px] uppercase tracking-widest">{t("Баг", "Team")}</p>
-                      <h3 className="text-foreground text-xl font-black tracking-tight">{name}</h3>
-                    </div>
-                    <span className="text-accent text-sm font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                  </div>
-                </Link>
-              );
-            })}
+            {enriched.map(({ team, playerCount, coachName }, i) => (
+              <TeamCard key={team.id || i} team={team} playerCount={playerCount} coachName={coachName} index={i} />
+            ))}
           </div>
         )}
       </div>

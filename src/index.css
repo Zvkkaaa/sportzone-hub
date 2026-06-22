@@ -2,27 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 220 25% 8%;
-    --foreground: 0 0% 95%;
+    --background: 220 28% 6%;
+    --foreground: 0 0% 96%;
 
-    --card: 220 20% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 220 22% 10%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 220 20% 12%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 220 22% 10%;
+    --popover-foreground: 0 0% 96%;
 
     --primary: 216 75% 15%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 16%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 220 20% 14%;
+    --secondary-foreground: 0 0% 92%;
 
-    --muted: 220 15% 18%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 220 15% 16%;
+    --muted-foreground: 220 10% 60%;
 
     --accent: 355 78% 56%;
     --accent-foreground: 0 0% 100%;
@@ -30,8 +30,8 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 20%;
+    --border: 220 15% 16%;
+    --input: 220 15% 18%;
     --ring: 355 78% 56%;
 
     --radius: 0.75rem;
@@ -42,7 +42,10 @@
     --sport-red-foreground: 0 0% 100%;
     --sport-gold: 45 93% 58%;
 
-    --sidebar-background: 220 25% 6%;
+    /* Per-team accent (overridable inline) */
+    --team-accent: var(--accent);
+
+    --sidebar-background: 220 28% 5%;
     --sidebar-foreground: 0 0% 95%;
     --sidebar-primary: 216 75% 15%;
     --sidebar-primary-foreground: 0 0% 98%;
@@ -61,31 +64,51 @@
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
   }
+  .font-display {
+    font-family: 'Oswald', 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+  }
+  h1, h2 {
+    font-family: 'Oswald', 'Inter', sans-serif;
+    letter-spacing: -0.015em;
+  }
 }
 
 @layer utilities {
   .gradient-navy {
-    background: linear-gradient(135deg, hsl(220 25% 8%) 0%, hsl(216 75% 15%) 50%, hsl(220 25% 8%) 100%);
+    background: linear-gradient(135deg, hsl(220 28% 6%) 0%, hsl(216 70% 14%) 50%, hsl(220 28% 6%) 100%);
   }
   .gradient-hero {
-    background: linear-gradient(180deg, hsl(220 25% 8% / 0.3) 0%, hsl(220 25% 8% / 0.6) 40%, hsl(220 25% 8%) 100%);
+    background: linear-gradient(180deg, hsl(220 28% 6% / 0.25) 0%, hsl(220 28% 6% / 0.7) 60%, hsl(220 28% 6%) 100%);
   }
   .gradient-card {
-    background: linear-gradient(180deg, hsl(220 20% 12%) 0%, hsl(220 20% 10%) 100%);
+    background: linear-gradient(180deg, hsl(220 22% 12%) 0%, hsl(220 22% 9%) 100%);
   }
   .gradient-accent {
-    background: linear-gradient(135deg, hsl(355 78% 56%) 0%, hsl(355 78% 40%) 100%);
+    background: linear-gradient(135deg, hsl(var(--team-accent)) 0%, hsl(var(--team-accent) / 0.7) 100%);
   }
   .gradient-section {
-    background: linear-gradient(180deg, hsl(220 25% 8%) 0%, hsl(216 60% 12%) 50%, hsl(220 25% 8%) 100%);
+    background: linear-gradient(180deg, hsl(220 28% 6%) 0%, hsl(216 50% 10%) 50%, hsl(220 28% 6%) 100%);
+  }
+  .gradient-team-hero {
+    background: linear-gradient(160deg, hsl(var(--team-accent) / 0.35) 0%, hsl(220 28% 6% / 0.7) 55%, hsl(220 28% 6%) 100%);
   }
   .text-gradient {
     background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(355 78% 70%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .text-team {
+    color: hsl(var(--team-accent));
+  }
+  .bg-team {
+    background-color: hsl(var(--team-accent));
+  }
+  .border-team {
+    border-color: hsl(var(--team-accent));
+  }
   .glow-accent {
-    box-shadow: 0 0 40px hsl(var(--accent) / 0.3);
+    box-shadow: 0 0 40px hsl(var(--team-accent) / 0.3);
   }
   .glow-navy {
     box-shadow: 0 0 60px hsl(216 75% 15% / 0.5);
@@ -98,7 +121,6 @@
     display: none;
   }
 
-  /* Smooth animations */
   @keyframes fade-in {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -111,14 +133,13 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
   }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
-  .animate-fade-in {
-    animation: fade-in 0.6s ease-out both;
-  }
-  .animate-slide-up {
-    animation: slide-up 0.8s ease-out both;
-  }
-  .animate-float {
-    animation: float 4s ease-in-out infinite;
-  }
+  .animate-fade-in { animation: fade-in 0.6s ease-out both; }
+  .animate-slide-up { animation: slide-up 0.8s ease-out both; }
+  .animate-float { animation: float 4s ease-in-out infinite; }
+  .animate-marquee { animation: marquee 30s linear infinite; }
 }
