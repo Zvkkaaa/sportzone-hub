@@ -24,10 +24,10 @@ const Footer = () => {
             <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center md:justify-start">
               {[
                 { to: "/teams", label: t("Багууд", "Teams") },
-                { to: "/matches", label: t("Тэмцээн", "Matches") },
+                { to: "/matches", label: t("Тоглолт", "Games") },
                 { to: "/news", label: t("Мэдээ", "News") },
                 { to: "/gallery", label: t("Зураг", "Gallery") },
-                { to: "/merch", label: t("Мерчант", "Merch") },
+                { to: "/sponsors", label: t("Спонсор", "Sponsors") },
                 { to: "/contact", label: t("Холбоо", "Contact") },
               ].map((link) => (
                 <Link key={link.to} to={link.to} className="text-foreground/50 text-sm hover:text-accent transition-colors">

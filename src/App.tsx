@@ -17,6 +17,7 @@ import NewsArticlePage from "./pages/NewsArticlePage";
 import GalleryPage from "./pages/GalleryPage";
 import MerchPage from "./pages/MerchPage";
 import ContactPage from "./pages/ContactPage";
+import SponsorsPage from "./pages/SponsorsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ const App = () => (
                 <Route path="/news" element={<NewsPage />} />
                 <Route path="/news/:slug" element={<NewsArticlePage />} />
                 <Route path="/gallery" element={<GalleryPage />} />
+                <Route path="/sponsors" element={<SponsorsPage />} />
                 <Route path="/merch" element={<MerchPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="*" element={<NotFound />} />

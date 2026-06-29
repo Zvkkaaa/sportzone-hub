@@ -7,10 +7,10 @@ import piratesLogo from "@/assets/pirates-logo.png";
 const nav = [
   { path: "/teams", mn: "Багууд", en: "Teams" },
   { path: "/players", mn: "Тоглогчид", en: "Players" },
-  { path: "/matches", mn: "Тэмцээн", en: "Matches" },
+  { path: "/matches", mn: "Тоглолт", en: "Games" },
   { path: "/news", mn: "Мэдээ", en: "News" },
   { path: "/gallery", mn: "Зураг", en: "Gallery" },
-  { path: "/merch", mn: "Мерчант", en: "Merch" },
+  { path: "/sponsors", mn: "Спонсор", en: "Sponsors" },
   { path: "/contact", mn: "Холбоо", en: "Contact" },
 ];
 
