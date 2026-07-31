@@ -1,14 +1,18 @@
-import { mockData } from "./mockData";
-
 const RAW = (import.meta.env.VITE_STRAPI_URL as string | undefined) || "";
 const STRAPI_BASE = RAW.replace(/\/$/, "");
-const USE_MOCK = !STRAPI_BASE;
+
+const requireStrapiBase = () => {
+  if (!STRAPI_BASE) {
+    throw new Error("PI_URL is required. Point it at your Strapi instance.");
+  }
+  return STRAPI_BASE;
+};
 
 export const getImageUrl = (url: string | undefined | null) => {
   if (!url) return "/placeholder.svg";
   if (url.startsWith("http") || url.startsWith("data:")) return url;
-  if (!STRAPI_BASE) return url;
-  return `${STRAPI_BASE}${url}`;
+  const base = STRAPI_BASE;
+  return base ? `${base}${url}` : url;
 };
 
 export const pickImage = (field: any): string | undefined => {
@@ -38,30 +42,24 @@ export const normalize = (entry: any): any => {
 };
 
 async function fetchAPI<T = any>(endpoint: string, query = "populate=*"): Promise<T[]> {
-  if (USE_MOCK) return (mockData[endpoint] || []) as T[];
   try {
-    const res = await fetch(`${STRAPI_BASE}/api/${endpoint}?${query}`);
+    const res = await fetch(`${requireStrapiBase()}/api/${endpoint}?${query}`);
     if (!res.ok) {
-      if (res.status === 404) return (mockData[endpoint] || []) as T[];
-      throw new Error(`Failed to fetch ${endpoint}`);
+      throw new Error(`Failed to fetch ${endpoint} (${res.status})`);
     }
     const json = await res.json();
     const arr = json.data || [];
-    if (!arr.length && mockData[endpoint]?.length) return mockData[endpoint] as T[];
     return arr.map(normalize);
-  } catch {
-    return (mockData[endpoint] || []) as T[];
+  } catch (error) {
+    throw error instanceof Error ? error : new Error(`Failed to fetch ${endpoint}`);
   }
 }
 
 async function fetchOne<T = any>(endpoint: string, slug: string): Promise<T | null> {
-  if (USE_MOCK) {
-    const list = mockData[endpoint] || [];
-    return (list.find((x: any) => x.slug === slug || String(x.id) === slug || x.documentId === slug) as T) || null;
-  }
+  const base = requireStrapiBase();
   const tryUrls = [
-    `${STRAPI_BASE}/api/${endpoint}?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`,
-    `${STRAPI_BASE}/api/${endpoint}/${encodeURIComponent(slug)}?populate=*`,
+    `${base}/api/${endpoint}?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`,
+    `${base}/api/${endpoint}/${encodeURIComponent(slug)}?populate=*`,
   ];
   for (const url of tryUrls) {
     try {
@@ -72,9 +70,7 @@ async function fetchOne<T = any>(endpoint: string, slug: string): Promise<T | nu
       if (data) return normalize(data);
     } catch {/* try next */}
   }
-  // Fallback to mock
-  const list = mockData[endpoint] || [];
-  return (list.find((x: any) => x.slug === slug || String(x.id) === slug || x.documentId === slug) as T) || null;
+  return null;
 }
 
 export const fetchTeams = () => fetchAPI("teams");

@@ -19,7 +19,7 @@ const PlayerCard = ({ player, index = 0 }: Props) => {
   return (
     <Link
       to={`/players/${encodeURIComponent(slug)}`}
-      className="group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-accent/50 transition-all duration-500 hover:-translate-y-1.5 animate-fade-in flex flex-col"
+      className="group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-accent/50 transition-all duration-500 hover:-translate-y-1.5 animate-fade-in flex flex-col shadow-[0_16px_40px_rgba(15,23,42,0.05)]"
       style={{ animationDelay: `${index * 50}ms` }}
     >
       <div className="aspect-[3/4] overflow-hidden bg-muted relative">
@@ -30,6 +30,7 @@ const PlayerCard = ({ player, index = 0 }: Props) => {
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-card/10 to-transparent opacity-90" />
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-amber-400 to-accent opacity-90" />
         {number !== undefined && number !== null && number !== "" && (
           <span className="absolute top-3 left-3 font-display text-5xl font-bold text-accent leading-none drop-shadow-lg">
             {number}
@@ -41,7 +42,7 @@ const PlayerCard = ({ player, index = 0 }: Props) => {
           </span>
         )}
         <div className="absolute bottom-0 left-0 right-0 p-4">
-          <h3 className="font-display text-xl font-bold uppercase text-foreground leading-tight">
+          <h3 className="font-display text-xl font-bold uppercase text-foreground leading-tight tracking-tight">
             {name}
           </h3>
         </div>

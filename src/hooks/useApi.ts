@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import {
-  fetchPlayers, fetchCoaches, fetchMatches, fetchGames, fetchGalleries, fetchMerchandises,
+  fetchPlayers, fetchCoaches, fetchMatches, fetchGames, fetchGalleries,
   fetchStandings, fetchNews, fetchTeams, fetchSponsors,
   fetchTeamBySlug, fetchPlayerBySlug, fetchNewsBySlug,
 } from "@/lib/api";
@@ -10,7 +10,6 @@ export const useCoaches = () => useQuery({ queryKey: ["coaches"], queryFn: fetch
 export const useMatches = () => useQuery({ queryKey: ["games"], queryFn: fetchMatches });
 export const useGames = () => useQuery({ queryKey: ["games"], queryFn: fetchGames });
 export const useGalleries = () => useQuery({ queryKey: ["galleries"], queryFn: fetchGalleries });
-export const useMerchandises = () => useQuery({ queryKey: ["merchandises"], queryFn: fetchMerchandises });
 export const useStandings = () => useQuery({ queryKey: ["standings"], queryFn: fetchStandings });
 export const useNews = () => useQuery({ queryKey: ["news"], queryFn: fetchNews });
 export const useTeams = () => useQuery({ queryKey: ["teams"], queryFn: fetchTeams });

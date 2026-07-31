@@ -15,7 +15,6 @@ import MatchesPage from "./pages/MatchesPage";
 import NewsPage from "./pages/NewsPage";
 import NewsArticlePage from "./pages/NewsArticlePage";
 import GalleryPage from "./pages/GalleryPage";
-import MerchPage from "./pages/MerchPage";
 import ContactPage from "./pages/ContactPage";
 import SponsorsPage from "./pages/SponsorsPage";
 import NotFound from "./pages/NotFound";
@@ -43,7 +42,6 @@ const App = () => (
                 <Route path="/news/:slug" element={<NewsArticlePage />} />
                 <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/sponsors" element={<SponsorsPage />} />
-                <Route path="/merch" element={<MerchPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

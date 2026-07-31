@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { usePlayers, useTeams } from "@/hooks/useApi";
-import { getImageUrl } from "@/lib/api";
+import { getImageUrl, pickImage } from "@/lib/api";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import piratesLogo from "@/assets/pirates-logo.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -69,36 +69,64 @@ const PlayersPage = () => {
         <img src={piratesLogo} alt="" className="w-[600px] h-[600px] object-contain" />
       </div>
 
-      {/* Team filter tabs */}
-      {teams.length > 0 && (
-        <div className="relative z-10 container mx-auto px-4 pt-8">
-          <div className="flex flex-wrap gap-2 justify-center">
-            <button
-              onClick={() => switchTeam("all")}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all ${
-                activeTeam === "all"
-                  ? "bg-accent text-accent-foreground"
-                  : "border border-border text-foreground/50 hover:text-foreground hover:border-foreground/30"
-              }`}
-            >
-              {t("Бүгд", "All")}
-            </button>
-            {teams.map((name: string) => (
-              <button
-                key={name}
-                onClick={() => switchTeam(name)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all ${
-                  activeTeam === name
-                    ? "bg-accent text-accent-foreground"
-                    : "border border-border text-foreground/50 hover:text-foreground hover:border-foreground/30"
-                }`}
-              >
-                {name}
-              </button>
-            ))}
+      <div className="relative z-10 container mx-auto px-4 pt-8">
+        <div className="rounded-[2rem] border border-white/8 bg-gradient-to-br from-card via-card to-background p-6 md:p-8 shadow-[0_20px_60px_rgba(2,6,23,0.22)]">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-6">
+            <div className="max-w-2xl">
+              <p className="text-accent text-xs font-bold uppercase tracking-[0.3em] mb-3">
+                {t("Roster", "Roster")}
+              </p>
+              <h1 className="font-display text-5xl md:text-7xl font-bold uppercase tracking-tight text-foreground">
+                {t("Тоглогчид", "Players")}
+              </h1>
+              <p className="text-foreground/60 max-w-xl mt-4">
+                {t(
+                  "Jersey number, position, height, age and nationality-ийг ашиглан roster-ээ хурдан шүүж үзнэ.",
+                  "Filter the roster quickly by jersey number, position, height, age and nationality."
+                )}
+              </p>
+            </div>
+            <div className="flex gap-2 flex-wrap">
+              <div className="rounded-2xl border border-white/8 bg-white/5 px-4 py-3 backdrop-blur">
+                <p className="text-[10px] uppercase tracking-[0.35em] text-foreground/40">Players</p>
+                <p className="font-display text-2xl font-bold text-foreground">{players.length}</p>
+              </div>
+              <div className="rounded-2xl border border-white/8 bg-white/5 px-4 py-3 backdrop-blur">
+                <p className="text-[10px] uppercase tracking-[0.35em] text-foreground/40">Teams</p>
+                <p className="font-display text-2xl font-bold text-foreground">{teams.length}</p>
+              </div>
+            </div>
           </div>
+
+          {teams.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              <button
+                  onClick={() => switchTeam("all")}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest transition-all ${
+                    activeTeam === "all"
+                      ? "bg-accent text-accent-foreground"
+                      : "border border-white/8 text-foreground/55 hover:text-foreground hover:border-white/18 bg-white/5 backdrop-blur"
+                  }`}
+                >
+                  {t("Бүгд", "All")}
+                </button>
+              {teams.map((name: string) => (
+                <button
+                  key={name}
+                  onClick={() => switchTeam(name)}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest transition-all ${
+                    activeTeam === name
+                      ? "bg-accent text-accent-foreground"
+                      : "border border-white/8 text-foreground/55 hover:text-foreground hover:border-white/18 bg-white/5 backdrop-blur"
+                  }`}
+                >
+                  {name}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       {filtered.length === 0 || !player ? (
         <div className="relative z-10 text-center py-32 text-foreground/40">
@@ -111,7 +139,7 @@ const PlayersPage = () => {
               <div className="relative w-64 md:w-80 lg:w-96">
                 <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-border bg-card">
                   <img
-                    src={getImageUrl(player.image?.url)}
+                    src={getImageUrl(pickImage(player.photo) || pickImage(player.image))}
                     alt={t(player.name_mn, player.name_en)}
                     className="w-full h-full object-cover"
                   />
@@ -180,7 +208,7 @@ const PlayersPage = () => {
                     i === currentIndex ? "border-accent scale-110" : "border-border/50 opacity-50 hover:opacity-80"
                   }`}
                 >
-                  <img src={getImageUrl(p.image?.url)} alt="" className="w-full h-full object-cover" />
+                  <img src={getImageUrl(pickImage(p.photo) || pickImage(p.image))} alt="" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

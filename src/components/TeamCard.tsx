@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
+import { getImageUrl } from "@/lib/api";
 import {
   teamName, teamSlug, teamCategory, teamGender, teamBanner, teamLogo, teamDescription,
 } from "@/lib/teamHelpers";
@@ -26,13 +27,14 @@ const TeamCard = ({ team, playerCount, coachName, index = 0 }: Props) => {
     <Link
       to={`/teams/${encodeURIComponent(slug)}`}
       state={{ teamName: name }}
-      className="group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-accent/50 transition-all duration-500 hover:-translate-y-1.5 animate-slide-up flex flex-col"
+      className="group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-accent/50 transition-all duration-500 hover:-translate-y-1.5 animate-slide-up flex flex-col shadow-[0_18px_45px_rgba(15,23,42,0.06)]"
       style={{ animationDelay: `${index * 70}ms` }}
     >
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-amber-400 to-accent opacity-90 z-10" />
       <div className="aspect-[4/3] overflow-hidden bg-muted relative">
         {banner ? (
           <img
-            src={banner.startsWith("http") ? banner : `https://colorquest.space${banner}`}
+            src={getImageUrl(banner)}
             alt={name}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
             loading="lazy"
@@ -40,10 +42,10 @@ const TeamCard = ({ team, playerCount, coachName, index = 0 }: Props) => {
         ) : (
           <div className="absolute inset-0 gradient-navy" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/45 to-transparent" />
         {logo && (
           <img
-            src={logo.startsWith("http") ? logo : `https://colorquest.space${logo}`}
+            src={getImageUrl(logo)}
             alt=""
             className="absolute top-4 left-4 w-12 h-12 object-contain drop-shadow-xl"
           />
@@ -65,7 +67,7 @@ const TeamCard = ({ team, playerCount, coachName, index = 0 }: Props) => {
       </div>
 
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="font-display text-2xl font-bold uppercase text-foreground group-hover:text-accent transition-colors">
+        <h3 className="font-display text-2xl font-bold uppercase text-foreground group-hover:text-accent transition-colors tracking-tight">
           {name}
         </h3>
         {coachName && (
@@ -76,7 +78,7 @@ const TeamCard = ({ team, playerCount, coachName, index = 0 }: Props) => {
         {desc && (
           <p className="text-foreground/50 text-sm mt-3 line-clamp-2">{desc}</p>
         )}
-        <div className="mt-auto pt-4 flex items-center justify-between">
+        <div className="mt-auto pt-4 flex items-center justify-between border-t border-border/60">
           <span className="inline-flex items-center gap-1.5 text-foreground/40 text-xs uppercase tracking-widest">
             <Users size={12} /> {playerCount ?? 0} {t("тоглогч", "players")}
           </span>

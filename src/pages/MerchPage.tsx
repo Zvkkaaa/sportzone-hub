@@ -4,19 +4,10 @@ import { getImageUrl } from "@/lib/api";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { ShoppingCart, ExternalLink } from "lucide-react";
 
-const fallbackMerch = [
-  { id: 1, name_mn: "Pirates Жерси", name_en: "Pirates Jersey", price: "89,000₮", emoji: "🏀" },
-  { id: 2, name_mn: "Pirates Малгай", name_en: "Pirates Cap", price: "35,000₮", emoji: "🧢" },
-  { id: 3, name_mn: "Pirates Оймс", name_en: "Pirates Socks", price: "15,000₮", emoji: "🧦" },
-  { id: 4, name_mn: "Pirates Цүнх", name_en: "Pirates Backpack", price: "65,000₮", emoji: "🎒" },
-  { id: 5, name_mn: "Pirates Ус савлагч", name_en: "Pirates Water Bottle", price: "25,000₮", emoji: "🍶" },
-  { id: 6, name_mn: "Pirates Гар оосор", name_en: "Pirates Lanyard", price: "12,000₮", emoji: "🏷️" },
-];
-
 const MerchPage = () => {
   const { t } = useLanguage();
   const { data: cmsData, isLoading } = useMerchandises();
-  const hasCmsData = cmsData && cmsData.length > 0;
+  const merch = cmsData || [];
 
   return (
     <div className="pt-16">
@@ -36,13 +27,15 @@ const MerchPage = () => {
       </section>
 
       <div className="container mx-auto px-4 py-12">
-        {isLoading ? <LoadingSpinner /> : hasCmsData ? (
+        {isLoading ? <LoadingSpinner /> : merch.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {cmsData.map((item: any) => (
-              <div key={item.id} className="group bg-card rounded-2xl border border-border overflow-hidden hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
-                {item.image?.url && (
+            {merch.map((item: any) => {
+              const image = item.image?.url || item.photo?.url || item.coverImage?.url;
+              return (
+              <div key={item.id} className="group bg-card rounded-2xl border border-border overflow-hidden hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 shadow-[0_16px_40px_rgba(15,23,42,0.05)]">
+                {image && (
                   <div className="aspect-square overflow-hidden bg-muted">
-                    <img src={getImageUrl(item.image.url)} alt={t(item.name_mn, item.name_en)} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                    <img src={getImageUrl(image)} alt={t(item.name_mn, item.name_en)} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
                   </div>
                 )}
                 <div className="p-4 text-center">
@@ -53,20 +46,11 @@ const MerchPage = () => {
                   </button>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {fallbackMerch.map((item) => (
-              <div key={item.id} className="group bg-card rounded-2xl border border-border p-6 hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 text-center">
-                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">{item.emoji}</div>
-                <h3 className="font-bold text-foreground mb-1">{t(item.name_mn, item.name_en)}</h3>
-                <p className="text-accent font-black text-lg mb-4">{item.price}</p>
-                <button className="w-full flex items-center justify-center gap-2 bg-muted text-foreground py-2.5 rounded-xl text-sm font-semibold hover:bg-accent hover:text-accent-foreground transition-all">
-                  <ShoppingCart size={14} /> {t("Худалдаж авах", "Buy Now")}
-                </button>
-              </div>
-            ))}
+          <div className="rounded-2xl border border-dashed border-border bg-card/40 px-6 py-14 text-center text-foreground/40">
+            {t("Strapi дээр merchandises content нэмэгдсэн үед энд гарч ирнэ.", "Add merchandise entries in Strapi and they will appear here.")}
           </div>
         )}
       </div>

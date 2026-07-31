@@ -3,17 +3,6 @@ import { useStandings } from "@/hooks/useApi";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { Trophy } from "lucide-react";
 
-const fallbackStandings = [
-  { pos: 1, team: "Pirates", played: 20, wins: 16, losses: 4, points: 50 },
-  { pos: 2, team: "SG Apes", played: 20, wins: 14, losses: 6, points: 46 },
-  { pos: 3, team: "Storm City", played: 20, wins: 13, losses: 7, points: 42 },
-  { pos: 4, team: "Eagle Warriors", played: 20, wins: 11, losses: 9, points: 38 },
-  { pos: 5, team: "Blue Wolves", played: 20, wins: 10, losses: 10, points: 34 },
-  { pos: 6, team: "Golden Stars", played: 20, wins: 8, losses: 12, points: 30 },
-  { pos: 7, team: "Red Dragons", played: 20, wins: 6, losses: 14, points: 23 },
-  { pos: 8, team: "Silver Falcons", played: 20, wins: 4, losses: 16, points: 15 },
-];
-
 const StandingsTable = () => {
   const { t } = useLanguage();
   const { data: cmsData, isLoading } = useStandings();
@@ -27,7 +16,7 @@ const StandingsTable = () => {
         losses: item.losses || 0,
         points: item.points || 0,
       }))
-    : fallbackStandings;
+    : [];
 
   if (isLoading) return <LoadingSpinner />;
 
@@ -72,6 +61,11 @@ const StandingsTable = () => {
           ))}
         </tbody>
       </table>
+      {standings.length === 0 && (
+        <p className="px-4 py-8 text-center text-foreground/40 text-sm">
+          {t("Одоогоор Strapi дээр standings өгөгдөл алга", "No standings data is available in Strapi yet")}
+        </p>
+      )}
     </div>
   );
 };
